@@ -1,44 +1,26 @@
-#ifndef PARSER_H
-#define PARSER_H
-#include "Lexer.h"
-#include <string>
+#include <map>
+#include <stack>
+#include <vector>
 using namespace std;
-#include "tokens.h"
 
-namespace C_1
-{
-    class Parser
-    {
-    private:
-        Lexer *lexer;
-        int token;
-    public:
-        Parser();
-        Parser(Lexer *lexer);
-        ~Parser();
-        
-        void programa();
-        void declaraciones();
-        void declaraciones_();
-        void declaracion();
-        void tipo();
-        void lista_var();
-        void lista_var_();
-        void sentencias();
-        void sentencias_();
-        void sentencia();
-        void expresion();
-        void expresion_();
-        void termino();
-        void termino_();
-        void factor();
+#include "Symbol.h"
+#include "Production.h"
+#include "lexer.h"
 
-        void eat(int t);
-        void error(string msg);
-        void parse();
-    };    
-    
-} // namespace C_1
+class Parser{
+	private: 
+		map<int, map<int, int>> table;
+		map<int, Symbol> syms;
+		vector<Production> prods;
+		//table[i][j]=k;
+		C_1::Lexer *lexer;
+		int token;
 
-
-#endif
+	public:
+		Parser();
+		~Parser();
+		void loadSymbols();
+		void loadProds();
+		void loadTable();
+		int parse();
+}
