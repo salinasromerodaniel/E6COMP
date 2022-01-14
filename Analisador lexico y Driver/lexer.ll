@@ -64,6 +64,6 @@ CADENA ["]([^"\\\n]|\\.|\\\n)*["]
 {ESP} {}
 
 
-.    { cout<<"ERROR LEXICO "<<yytext<<endl;}   //Cualquier caracter excepto salto de linea
+.    { cout<<"ERROR LEXICO "<<yytext<<endl;}
 
 %%
